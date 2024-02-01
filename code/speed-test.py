@@ -23,14 +23,22 @@ class ApiManager:
 class PromptManager:
     @staticmethod
     def get_prompt(description: str, word: str) -> str:
-        return f"Given the following description '{description}' determine if it is an accurate result for the given word '{word}' in the context of a semantic search. I don't want you to look for exact matches. The result of your evaluation must be just True or False without any other text or explanation"
+        return (
+            "Given the following description '{description}' determine if "
+            "it is an accurate result for the given word '{word}' "
+            "in the context of a semantic search. "
+            "I don't want you to look for exact matches. "
+            "The result of your evaluation must be just True or False "
+            "without any other text or explanation"
+        )
 
 
 async def main() -> None:
     api_manager = ApiManager()
     texts = [
         "how are you?",
-        "what is the meaning of life?, " "what is the best programming language?",
+        "what is the meaning of life?, "
+        "what is the best programming language?",
     ]
     tasks = []
 
