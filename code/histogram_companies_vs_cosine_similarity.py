@@ -25,7 +25,7 @@ def plot_histogram(file):
     plt.title('Histogram of Cosine Similarity: ' + name)
 
     # Save the figure
-    plt.savefig('/Users/esteban/Documents/VIQ/VIQ-770/openai-threshold/Plots/'
+    plt.savefig('/Users/esteban/Documents/VIQ/VIQ-770/openai-threshold/plots/'
                 + name + '_histogram.png')
 
     plt.close()
