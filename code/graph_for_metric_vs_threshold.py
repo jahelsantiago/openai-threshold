@@ -81,6 +81,7 @@ def plot_metrics(file):
 
     # plt.show()
     # Save the figure
-    plt.savefig(name + '_roc.png')
+    plt.savefig('/Users/esteban/Documents/VIQ/VIQ-770/openai-threshold/Plots/'
+                + name + '_roc.png')
 
     plt.close()

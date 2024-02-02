@@ -5,7 +5,6 @@ from extract_name import extract_name
 
 
 # Get all CSV files in the folder
-
 csv_files = glob.glob(
     '/Users/esteban/Documents/VIQ/VIQ-770/openai-threshold/csvs/*.csv')
 
@@ -18,6 +17,3 @@ for file in csv_files:
         plot_histogram(file)
     else:
         plot_histogram(file)
-
-# file = 'freight visibility software-1k.csv'
-# plot_histogram(file)
