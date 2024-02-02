@@ -4,16 +4,23 @@ from sklearn.metrics import roc_curve, auc
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import os
+from extract_name import extract_name
 
 
 def plot_metrics(file):
     # Load the data
     data = pd.read_csv(file)
+    name = extract_name(file)
 
     # Split the data
     X = data['cosine_distance']
-    y = data['gpt_evaluation']
+    y = []
+
+    for i in range(len(X)):
+        if type(data['gpt_evaluation'][i]) is str:
+            y.append(1) if data['gpt_evaluation'][i].contains('True') else y.append(0)
+        else:
+            y.append(1) if data['gpt_evaluation'][i] else y.append(0)
 
     # Calculate Cosine Similarity
     X = 1 - X
@@ -48,11 +55,12 @@ def plot_metrics(file):
     plt.legend()
     plt.xlabel('Threshold')
     plt.ylabel('Metric Value')
-    plt.title('Metrics for Different Thresholds:' + os.path.splitext(file)[0])
+    plt.title('Metrics for Different Thresholds:' + name)
 
     # plt.show()
     # Save the figure
-    plt.savefig(os.path.splitext(file)[0] + '_metrics.png')
+    plt.savefig('/Users/esteban/Documents/VIQ/VIQ-770/openai-threshold/plots/'
+                + name + '_metrics.png')
 
     plt.close()
 
@@ -73,9 +81,7 @@ def plot_metrics(file):
 
     # plt.show()
     # Save the figure
-    plt.savefig(os.path.splitext(file)[0] + '_roc.png')
+    plt.savefig('/Users/esteban/Documents/VIQ/VIQ-770/openai-threshold/plots/'
+                + name + '_roc.png')
 
     plt.close()
-
-
-plot_metrics('eval_10K_software_prompt_7_gpt_3_5_balanced.csv')

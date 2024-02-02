@@ -3,3 +3,4 @@ em
 *.csv
 poetry.lock
 .DS_Store
+.png
