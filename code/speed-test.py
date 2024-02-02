@@ -37,7 +37,7 @@ async def main() -> None:
     api_manager = ApiManager()
     texts = [
         "how are you?",
-        "what is the meaning of life?, "
+        "what is the meaning of life?",
         "what is the best programming language?",
     ]
     tasks = []
