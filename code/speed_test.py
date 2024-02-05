@@ -1,10 +1,13 @@
 import openai
+from config import Config
 from openai import AsyncOpenAI
 import asyncio
 import time
 import pandas as pd
 import tiktoken
 from contextlib import contextmanager
+
+openai.api_key = Config.OPENAI_API_KEY
 
 @contextmanager
 def timing(label: str):

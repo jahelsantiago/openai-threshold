@@ -1,6 +1,6 @@
 import glob
 from graph_for_metric_vs_threshold import plot_metrics
-from code.histogram_companies_vs_cosine_similarity_csv import plot_histogram
+from histogram_companies_vs_cosine_similarity_csv import plot_histogram
 from extract_name import extract_name
 
 

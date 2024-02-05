@@ -1,7 +1,8 @@
 import openai
+from config import Config
 
 # Initialize the OpenAI API with your API key
-openai.api_key = 'openai_api_key_here'
+openai.api_key = Config.OPENAI_API_KEY
 
 
 def create_embedding(input_string) -> list[float]:

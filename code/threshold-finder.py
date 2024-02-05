@@ -2,6 +2,8 @@ from .database import Database
 from .config import Config
 from .embedding import create_embedding
 from .speed_test import ApiManager
+import numpy as np
+from sklearn.metrics import precision_score, recall_score, f1_score
 
 
 def get_query_random_companies(embedding: list[float], limit: int):
@@ -54,8 +56,8 @@ def process_search(search_term: str):
     query_random_companies = get_query_random_companies(embedding)
     random_companies = db.select_rows_dict_cursor(query_random_companies)
 
-    mean = False
-    std = False
+    mean = np.mean([1 - d['cosine_distance'] for d in random_companies])
+    std = np.std([1 - d['cosine_distance'] for d in random_companies])
 
     query_random_threshold = get_query_random_companies_threshold(
         embedding, 10, mean + 0.5, mean + 2 * std
@@ -64,9 +66,29 @@ def process_search(search_term: str):
 
     openai_manger = ApiManager()
     openai_manger.process_companies(random_companies_threshold, search_term)
-    
-    # get f1 values for threshold given a step size
-    # array with [(threshold, f1)]
 
-    # get the best threshold
-    # best_threshold = max(f1_values, key=lambda x: x[1])
+    # # get f1 values for threshold given a step size
+    # # array with [(threshold, f1)]
+
+def arrange_data(data):
+    cosine_similarity = [1 - d['cosine_distance'] for d in data]
+    return cosine_similarity
+
+def get_gpt_evaluation(data):
+    y_true = []
+    for i in range(len(data)):
+        if type(data['gpt_evaluation'][i]) is str:
+            y_true.append(1) if 'True' in data['gpt_evaluation'][i] else y_true.append(0)
+        elif data['gpt_evaluation'][i] is bool:
+            y_true.append(1) if data['gpt_evaluation'][i] else y_true.append(0)
+
+    return y_true
+
+def get_f1_values(thresholds, cosine_similarity, y_true):
+    threshold_f1_tuples = []
+    for threshold in thresholds:
+        # Make predictions based on the threshold
+        y_pred = (cosine_similarity > threshold).astype(int)
+        # Calculate F1
+        threshold_f1_tuples.append((threshold, f1_score(y_true, y_pred,  zero_division=0)))
+
