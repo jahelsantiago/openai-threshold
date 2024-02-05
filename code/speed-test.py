@@ -127,7 +127,7 @@ class FileManger:
 async def main() -> None:
     api_manager = ApiManager()
     file_name = "real-state-5k.csv"
-    path = f"cosine_distances/{file_name}"
+    path = f"csvs/{file_name}"
     search = "real estate"
     companies = FileManger.read_csv(path)
 
