@@ -109,11 +109,11 @@ class ApiManager:
 class PromptManager:
     @staticmethod
     def get_prompt(description: str, word: str) -> str:
-        return f"Given the following description '{description}' determine if it is an accurate result for the given word '{word}' in the context of a semantic search. I don't want you to look for exact matches. The result of your evaluation must be just True or False without any other text or explanation"
-        return f"""
-        If i am looking for companies related to {word} and I find the following description:
-        "{description}" Would you say it is a good match for the search term? Only answe True or False and no other text or explanation.
-        """
+        return f"""Given the following description '{description}' determine if it is an accurate result for the given word '{word}' in the context of a semantic search. I don't want you to look for exact matches. The result of your evaluation must be just True or False without any other text or explanation"
+        # return f"""
+        # If i am looking for companies related to {word} and I find the following description:
+        # "{description}" Would you say it is a good match for the search term? Only answe True or False and no other text or explanation.
+        # """
 
 
 class FileManger:

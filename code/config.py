@@ -9,3 +9,4 @@ class Config:
     DATABASE_PASSWORD = environ.get('DATABASE_PASSWORD')
     DATABASE_PORT = environ.get('DATABASE_PORT')
     DATABASE_NAME = environ.get('DATABASE_NAME')
+    OPENAI_API_KEY = environ.get('OPENAI_API_KEY')
