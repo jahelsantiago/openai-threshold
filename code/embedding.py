@@ -11,7 +11,7 @@ def create_embedding(input_string):
         )
 
         # Extract the embedding vector from the response
-        embedding_vector = response['data'][0]['embedding'][:10]
+        embedding_vector = response['data'][0]['embedding']
 
         return embedding_vector
 
