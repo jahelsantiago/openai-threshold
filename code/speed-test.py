@@ -1,10 +1,10 @@
+import openai
 from openai import AsyncOpenAI
 import asyncio
 import time
 import pandas as pd
 import tiktoken
 from contextlib import contextmanager
-
 
 @contextmanager
 def timing(label: str):
@@ -138,6 +138,5 @@ async def main() -> None:
         f"results-{file_name}.csv",
         index=False
     )
-
 
 asyncio.run(main())
