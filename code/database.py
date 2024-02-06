@@ -1,8 +1,6 @@
 import sys
 import psycopg2
-from config import Config
 from psycopg2.extras import DictCursor
-
 
 
 class Database:
@@ -46,11 +44,3 @@ class Database:
         with self.conn.cursor(cursor_factory=DictCursor) as cur:
             cur.execute(query)
             return cur.fetchall()
-
-
-print("Starting")
-db = Database(Config)
-results = db.select_rows_dict_cursor('SELECT pk, text_raw FROM nlp.chat_gpt_company_embedding limit 10;')
-
-
-
