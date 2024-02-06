@@ -19,7 +19,6 @@ class ApiManager:
     async def generate_answer(self, company: dict, search: str) -> dict:
 
         text = PromptManager.get_prompt(company["text_raw"], search)
-        del company["text_raw"]
 
         chat_completion = await self.client.chat.completions.create(
             messages=[

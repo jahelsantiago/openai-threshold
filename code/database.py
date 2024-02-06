@@ -43,4 +43,5 @@ class Database:
         self.connect()
         with self.conn.cursor(cursor_factory=DictCursor) as cur:
             cur.execute(query)
-            return cur.fetchall()
+            dictRows = cur.fetchall()
+            return [dict(row) for row in dictRows]
