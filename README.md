@@ -1,3 +1,5 @@
+# POC ideal threshold
+
 This project is a POC for finding the ideal threshold in a semantic search.
 
 To run it, please add a .env at the root of the project with the following values:
