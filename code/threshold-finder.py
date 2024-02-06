@@ -92,3 +92,5 @@ def get_f1_values(thresholds, cosine_similarity, y_true):
         # Calculate F1
         threshold_f1_tuples.append((threshold, f1_score(y_true, y_pred,  zero_division=0)))
 
+    return threshold_f1_tuples
+
